@@ -27,6 +27,7 @@ target/
 /.nb-gradle/
 build/
 
+### Check ###
 ### VS Code ###
 .vscode/
 /bookstore/target/
