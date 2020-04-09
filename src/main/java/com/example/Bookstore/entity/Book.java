@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="tbl_bok")
+@Table(name="tbl_book")
 @Setter
 @Getter
 @ToString
