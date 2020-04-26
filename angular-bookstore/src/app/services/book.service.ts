@@ -1,3 +1,4 @@
+import { BookCategory } from './../common/book-category';
 import { Book } from './../common/book';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class BookService {
 
   private baseUrl = "http://localhost:8080/api/v1/books";
+  private categoryUrl = "http://localhost:8080/api/v1/book-category";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,11 +23,24 @@ export class BookService {
     );
 
   }
+
+  getBookCategories(): Observable<BookCategory[]>
+  {
+    return this.httpClient.get<GetResponseBookCategory>(this.categoryUrl).pipe(
+      map(response => response._embedded.bookCategory)
+    );
+  }
 }
 
 // Remove the "_embedded from the api"
 interface GetResponseBooks{
   _embedded: {
     books: Book[];
+  }
+}
+
+interface GetResponseBookCategory{
+  _embedded: {
+    bookCategory: BookCategory[];
   }
 }
