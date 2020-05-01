@@ -14,32 +14,39 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBooks(theCategoryId: number): Observable<Book[]>{
+  getBooks(theCategoryId: number): Observable<Book[]> {
     const searchUrl = `${this.baseUrl}/search/categoryid?id=${theCategoryId}`;
-    return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
-      // map takes response as a parameter
-      map(response => response._embedded.books)
-
-    );
+    return this.getBooksList(searchUrl);
 
   }
 
-  getBookCategories(): Observable<BookCategory[]>
-  {
+  private getBooksList(searchUrl: string): Observable<Book[]> {
+    return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(map(response => response._embedded.books));
+  }
+
+  getBookCategories(): Observable<BookCategory[]> {
     return this.httpClient.get<GetResponseBookCategory>(this.categoryUrl).pipe(
       map(response => response._embedded.bookCategory)
     );
   }
+
+  searchBooks(keyword: string): Observable<Book[]> {
+    const searchUrl = `${this.baseUrl}/search/searchbykeyword?name=${keyword}`;
+    return this.getBooksList(searchUrl);
+
+  };
 }
 
+
+
 // Remove the "_embedded from the api"
-interface GetResponseBooks{
+interface GetResponseBooks {
   _embedded: {
     books: Book[];
   }
 }
 
-interface GetResponseBookCategory{
+interface GetResponseBookCategory {
   _embedded: {
     bookCategory: BookCategory[];
   }
