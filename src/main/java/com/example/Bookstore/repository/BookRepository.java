@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * for all host
  * @CrossOrigin("*")
  *
- * for specific host
+  * for specific host
  * @CrossOrigin("http://localhost:4200", "http://localhost:4202")
  */
 //@CrossOrigin("http://localhost:4200")
