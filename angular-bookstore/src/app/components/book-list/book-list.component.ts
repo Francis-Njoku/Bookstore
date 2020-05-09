@@ -119,4 +119,9 @@ export class BookListComponent implements OnInit {
     )
   }
 
+  updatePageSize(pageSize: number){
+    this.pageSize = pageSize;
+    this.listBooks();
+  }
+
 }
