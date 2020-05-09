@@ -21,8 +21,6 @@ const routes: Routes = [
   {path: '', redirectTo: '/books', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 
-
-
 ]
 
 @NgModule({
@@ -33,7 +31,7 @@ const routes: Routes = [
     BookCategoryComponent,
     SearchComponent,
     BookDetailsComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
   ],
   imports: [
     BrowserModule,
