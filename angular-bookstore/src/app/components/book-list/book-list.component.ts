@@ -133,12 +133,15 @@ export class BookListComponent implements OnInit {
 
     const keyword: string = this._activatedRoute.snapshot.paramMap.get('keyword');
 
-    this._bookService.searchBooks(keyword).subscribe(
-      data => {
+    this._bookService.searchBooks(keyword, 
+      this.currentPage  - 1, 
+      this.pageSize).subscribe(
+      /**data => {
         // console.log(data);
-        this.books = data;
-      }
-    )
+       this.books = data;
+      } **/
+      this.processPaginate()
+    );
   }
 
   updatePageSize(pageSize: number){
