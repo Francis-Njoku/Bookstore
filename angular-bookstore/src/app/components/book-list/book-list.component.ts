@@ -2,6 +2,7 @@ import { BookService } from './../../services/book.service';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../common/book';
 import { ActivatedRoute } from '@angular/router';
+import { NgbPaginationConfig } from "@ng-bootstrap/ng-bootstrap"
 
 
 
@@ -19,6 +20,7 @@ export class BookListComponent implements OnInit {
 
   currentCategoryId: number = 1;
   searchMode: boolean = false;
+  previousCategory: number = 1;
 
   // new properties for server side pagination
   currentPage: number = 1;
@@ -65,7 +67,11 @@ export class BookListComponent implements OnInit {
   ] */
 
   constructor(private _bookService: BookService, 
-              private _activatedRoute: ActivatedRoute              ) { }
+              private _activatedRoute: ActivatedRoute, 
+              _config: NgbPaginationConfig) {
+                _config.maxSize = 3;
+                _config.boundaryLinks = true;
+               }
 
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(() => {
@@ -102,6 +108,14 @@ export class BookListComponent implements OnInit {
      else {
        this.currentCategoryId = 1;
      }
+
+     // Setting up the current page to 1
+     // If user navigates to other category
+     if (this.previousCategory != this.currentPage){
+       this.currentPage = 1;
+     }
+
+     this.previousCategory = this.currentCategoryId;
 
 
     this._bookService.getBooks(this.currentCategoryId,
