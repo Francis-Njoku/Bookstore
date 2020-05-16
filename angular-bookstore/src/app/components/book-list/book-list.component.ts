@@ -15,12 +15,18 @@ export class BookListComponent implements OnInit {
 
   title = 'angular-bookstore';
 
-  books: Book[];
+  books: Book[] = [];
 
-  currentCategoryId: number;
-  searchMode: boolean;
+  currentCategoryId: number = 1;
+  searchMode: boolean = false;
+
+  // new properties for server side pagination
+  currentPage: number = 1;
+  pageSize: number = 5;
+  totalRecords: number = 0;
+ /**
   pageOfItems: Array<Book>;
-  pageSize: number = 6;
+  pageSize: number = 6; **/
   /**
   books: Book[] = [
     {
@@ -69,7 +75,7 @@ export class BookListComponent implements OnInit {
 
   pageClick(pageOfItems: Array<Book>){
     // update the current page of items
-    this.pageOfItems = pageOfItems;
+    //this.pageOfItems = pageOfItems;
   }
 
   listBooks()
@@ -98,11 +104,13 @@ export class BookListComponent implements OnInit {
      }
 
 
-    this._bookService.getBooks(this.currentCategoryId).subscribe(
+    this._bookService.getBooks(this.currentCategoryId,
+                              this.currentPage - 1,
+                              this.pageSize).subscribe(
       /*data => {
         console.log(data);
       } */
-      data => this.books = data
+      this.processPaginate()
     )
   }
 
@@ -120,8 +128,18 @@ export class BookListComponent implements OnInit {
   }
 
   updatePageSize(pageSize: number){
-    this.pageSize = pageSize;
+    //this.pageSize = pageSize;
     this.listBooks();
+  }
+
+  processPaginate(){
+    return data => {
+      this.books = data._embedded.books;
+      // page number starts from 1 index
+      this.currentPage = data.page.number + 1;
+      this.totalRecords = data.page.totalElements;
+      this.pageSize = data.page.size;
+    }
   }
 
 }
