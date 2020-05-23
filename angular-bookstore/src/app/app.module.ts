@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core'; 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
@@ -40,6 +40,7 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     NgbModule,
+    NgxSpinnerModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
