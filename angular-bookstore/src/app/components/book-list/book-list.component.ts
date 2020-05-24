@@ -159,7 +159,7 @@ export class BookListComponent implements OnInit {
   processPaginate(){
     return data => {
       // set delay for 3 seconds to see the spinner
-      setTimeout(() => {
+     // setTimeout(() => {
         //stops the spinner/loader
       this._spinnerService.hide();
       this.books = data._embedded.books;
@@ -167,7 +167,7 @@ export class BookListComponent implements OnInit {
       this.currentPage = data.page.number + 1;
       this.totalRecords = data.page.totalElements;
       this.pageSize = data.page.size;
-      }, 1000)
+      //}, 1000)
     }
   }
 

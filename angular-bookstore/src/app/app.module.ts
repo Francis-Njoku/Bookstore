@@ -14,6 +14,7 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 const routes: Routes = [
   {path: 'books/:id', component: BookDetailsComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
     BookDetailsComponent,
     JwPaginationComponent,
     CartStatusComponent,
+    CartDetailsComponent,
   ],
   imports: [
     BrowserModule,
