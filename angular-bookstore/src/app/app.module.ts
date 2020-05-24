@@ -17,6 +17,7 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 const routes: Routes = [
+  {path: 'cart-details', component: CartDetailsComponent},
   {path: 'books/:id', component: BookDetailsComponent},
   {path: 'books', component: BookListComponent}, 
   {path: 'search/:keyword', component: BookListComponent},
