@@ -34,4 +34,9 @@ export class CartDetailsComponent implements OnInit {
     this._cartService.calculateTotalPrice();
   }
 
+  incrementQuantity(CartItem: CartItem){
+    console.log('íncrement quantity', this.cartItems);
+    this._cartService.addToCart(CartItem);
+  }
+
 }

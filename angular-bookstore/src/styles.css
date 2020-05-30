@@ -30,3 +30,7 @@ body, html{
 .content{
     padding-bottom: 100px;
 }
+
+a, .pointer {
+    cursor: pointer;
+}
