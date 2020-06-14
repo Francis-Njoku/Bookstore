@@ -26,6 +26,13 @@ export class CheckoutComponent implements OnInit {
         state: [''],
         country: [''],
         zipcode: ['']
+      }),
+      billingAddress: this._formBuilder.group({
+        street: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        zipcode: ['']
       })
     })
   }
