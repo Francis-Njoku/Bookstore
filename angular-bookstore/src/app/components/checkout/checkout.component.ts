@@ -19,6 +19,13 @@ export class CheckoutComponent implements OnInit {
         firstName: [''],
         lastName: [''],
         email: ['']
+      }), 
+      shippingAddress: this._formBuilder.group({
+        street: [''],
+        city: [''],
+        state: [''],
+        country: [''],
+        zipcode: ['']
       })
     })
   }
