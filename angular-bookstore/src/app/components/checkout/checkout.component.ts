@@ -33,6 +33,14 @@ export class CheckoutComponent implements OnInit {
         state: [''],
         country: [''],
         zipcode: ['']
+      }),
+      creditCard: this._formBuilder.group({
+        cardType: [''],
+        nameOnCard: [''],
+        cardNumber: [''],
+        cvv: [''],
+        expirationMonth: [''],
+        expirationYear: ['']
       })
     })
   }
@@ -42,6 +50,17 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log(this.checkoutFormGroup.get('customer').value.email);
 
+  }
+  
+  copyShippingAddressToBillingAddress(event) {
+
+    if (event.target.checked) {
+      this.checkoutFormGroup.controls.billingAddress
+      .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
+    }
+    else {
+      this.checkoutFormGroup.controls.billingAddress.reset();
+    }
   }
 
 }
